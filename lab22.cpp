@@ -316,22 +316,27 @@ int main()
     list.print_reverse();
 
     // pop the front
-    cout << "Popping the front: ";
+    cout << "Popping the front... " << endl;
     list.pop_front();
     cout << "List after popping the front: ";
     list.print();
 
     // pop the back
-    cout << "Popping the back: ";
+    cout << "Popping the back... " << endl;
     list.pop_back();
     cout << "List after popping the back: ";
     list.print();
 
     // delete from specified position
-    cout << "Deleting node at position " << DT_POS << ":"<< endl;
+    cout << "Deleting node at position " << DT_POS << "..."<< endl;
     list.delete_pos(DT_POS);
     cout << "List after deleting position " << DT_POS << ": ";
     list.print();
+
+    // try to delete a position that doesn't exist
+    int invalidPos = size; 
+    cout << "Trying to delete node at position " << invalidPos << "..." << endl;
+    list.delete_pos(invalidPos);
 
     cout << "Deleting list, then trying to print.\n";
     list.~DoublyLinkedList();
