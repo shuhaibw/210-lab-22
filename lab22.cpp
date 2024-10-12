@@ -7,7 +7,7 @@
 
 using namespace std;
 
-const int MIN_NR = 10, MAX_NR = 99, MIN_LS = 5, MAX_LS = 20;
+const int MIN_NR = 10, MAX_NR = 99, MIN_LS = 5, MAX_LS = 20, DT_POS = 2;
 
 class DoublyLinkedList 
 {
@@ -314,6 +314,24 @@ int main()
 
     cout << "List backward: ";
     list.print_reverse();
+
+    // pop the front
+    cout << "Popping the front: ";
+    list.pop_front();
+    cout << "List after popping the front: ";
+    list.print();
+
+    // pop the back
+    cout << "Popping the back: ";
+    list.pop_back();
+    cout << "List after popping the back: ";
+    list.print();
+
+    // delete from specified position
+    cout << "Deleting node at position " << DT_POS << ":"<< endl;
+    list.delete_pos(DT_POS);
+    cout << "List after deleting position " << DT_POS << ": ";
+    list.print();
 
     cout << "Deleting list, then trying to print.\n";
     list.~DoublyLinkedList();
