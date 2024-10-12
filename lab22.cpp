@@ -114,7 +114,7 @@ public:
         temp->next = newNode;
     }
 
-    void delete_node(int value) 
+    void delete_value(int value) 
     {
         if (!head) 
         {
@@ -133,14 +133,15 @@ public:
             return; // Value not found
         }
 
+        // if temp is not the head
         if (temp->prev) 
         {
             temp->prev->next = temp->next;
         } 
-
+        // else if temp is pointing at head
         else 
         {
-            head = temp->next; // Deleting the head
+            head = temp->next; // Deleting the head, list becomes empty
         }
 
         if (temp->next) 
@@ -149,9 +150,50 @@ public:
         } 
         else 
         {
-            tail = temp->prev; // Deleting the tail
+            tail = temp->prev; // Deleting the tail, list becomes empty
         }
 
+        delete temp;
+    }
+
+    void pop_front()
+    {
+        if (!head) 
+        {
+            cout << "List is empty" << endl;
+            return; // Empty list
+        }
+
+        Node *temp = head;
+        // move head to next node
+        head = head->next;
+
+        if(head)
+        {
+            // set new heads prev pointer to nullptr
+            head->prev = nullptr;
+        }
+        // delete the old head
+        delete temp;
+    }
+
+    void pop_back()
+    {
+        if(!tail)
+        {
+            cout << "List is empty" << endl;
+            return;
+        }
+
+        Node *temp = tail;
+        // set new tail to prev node
+        tail = tail->prev;
+
+        if(tail)
+        {
+            tail->next = nullptr;
+        }
+        // delete old tail
         delete temp;
     }
 
