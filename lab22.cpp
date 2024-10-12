@@ -2,6 +2,8 @@
 // IDE used: VS Code
 
 #include <iostream>
+#include <cstdlib>
+#include <ctime>
 
 using namespace std;
 
@@ -156,6 +158,54 @@ public:
         delete temp;
     }
 
+    void delete_pos(int position)
+    {
+        if (!head) 
+        {
+            cout << "List is empty" << endl;
+            return; // Empty list
+        }
+
+        Node *temp = head;
+
+        // point temp exactly at node to delete
+        for (int i = 0; temp && i < position; i++)
+        {
+            temp = temp->next;
+        }
+
+        if (!temp)
+        {
+            cout << "Position out of range" << endl;
+            return; 
+        }
+        
+        // adjusting pointers
+        if (temp->prev)
+        {
+            // link prev node to the next node
+            temp->prev->next = temp->next;
+        }
+        else
+        {
+            // delete old head
+            head = temp->next;
+        }
+
+        if (temp->next)
+        {
+            // link next node to the prev node
+            temp->next->prev = temp->prev;
+        }
+        else 
+        {
+            // delete old tail
+            tail = temp->prev;
+        }
+
+        delete temp;
+    }
+
     void pop_front()
     {
         if (!head) 
@@ -247,6 +297,9 @@ public:
 // Driver program
 int main() 
 {
+    // seed random num generator
+    srand(static_cast<unsigned>(time(0)));
+
     DoublyLinkedList list;
 
     int size = rand() % (MAX_LS - MIN_LS + 1) + MIN_LS;
